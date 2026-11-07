@@ -1,0 +1,62 @@
+name: QA Android
+
+on:
+  pull_request:
+    branches: [develop, main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-android-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Android · build e lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Obter código do PR
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Verificar arquivos locais
+        shell: bash
+        run: |
+          arquivos="$(git ls-files -- ':(glob)**/google-services.json' ':(glob)**/local.properties')"
+          if [[ -n "$arquivos" ]]; then
+            echo "::error::Remova os arquivos de configuração local da branch."
+            printf '%s\n' "$arquivos"
+            exit 1
+          fi
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Conferir Android SDK 36
+        shell: bash
+        run: |
+          sdk_root="${ANDROID_HOME:-${ANDROID_SDK_ROOT:?Android SDK não encontrado no runner}}"
+          if [[ ! -f "$sdk_root/platforms/android-36/android.jar" || ! -x "$sdk_root/build-tools/36.0.0/aapt2" ]]; then
+            "$sdk_root/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$sdk_root" \
+              "platforms;android-36" "build-tools;36.0.0"
+          fi
+
+      - name: Compilar e executar Android Lint
+        run: bash ./gradlew --no-daemon --console=plain :app:assembleDebug :app:lintDebug
+
+      - name: Guardar relatório do lint
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: relatorio-android-lint
+          path: |
+            app/build/reports/lint-results-debug.html
+            app/build/reports/lint-results-debug.xml
+          if-no-files-found: ignore
+          retention-days: 7

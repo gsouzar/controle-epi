@@ -52,3 +52,11 @@ Cada issue contém a história e os critérios em Dado, Quando e Então.
 O código entra em `develop` por PR e segue para `main` após revisão. O [PR #8](https://github.com/gsouzar/controle-epi/pull/8) reúne a versão inicial para revisão da dupla.
 
 Acompanhe as seis histórias no [quadro ControleEPI do GitHub Projects](https://github.com/users/gsouzar/projects/1/views/1), organizado em **A fazer**, **Fazendo** e **Feito**.
+
+## QA dos pull requests
+
+A aba **Checks** mostra a compilação debug e o Android Lint. O relatório fica nos artefatos da execução. O build do GitHub roda sem `google-services.json` e sem acesso ao Firebase real.
+
+Para comentários de revisão no diff, habilite **Automatic review** para este repositório nas [configurações do Codex](https://chatgpt.com/settings/code-review). A configuração segue os critérios de [AGENTS.md](AGENTS.md). Também é possível solicitar uma revisão com `@codex review` em um PR.
+
+Depois dos checks e da revisão automática, o outro integrante confere o resultado, testa no aparelho quando necessário e aprova o PR no GitHub.

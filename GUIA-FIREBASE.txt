@@ -1,0 +1,120 @@
+﻿CONTROLE EPI — FIREBASE REAL, PASSO A PASSO
+
+Faça as etapas na ordem. Você vai usar o navegador, o Explorador de Arquivos
+e o Android Studio. Este caminho é feito pelo console, sem comandos no terminal.
+
+
+1. CRIE O PROJETO NO FIREBASE — NAVEGADOR
+
+   1. Abra https://console.firebase.google.com/ e entre na sua conta Google.
+   2. Clique em Adicionar projeto ou Criar um projeto.
+   3. Digite ControleEPI como nome. Avance até Criar projeto.
+   4. O Google Analytics é opcional para este app.
+   5. Quando terminar, abra a Visão geral do projeto ControleEPI.
+
+
+2. REGISTRE O APP ANDROID E BAIXE O ARQUIVO
+
+   1. Na Visão geral do projeto, clique no ícone Android. Se o projeto
+      já tiver outro app registrado, procure Adicionar app.
+   2. No campo Nome do pacote Android, cole este valor exato:
+      br.edu.unisenai.controleepi
+   3. Pode usar ControleEPI como apelido. Deixe SHA-1 em branco.
+   4. Clique em Registrar app e depois em Baixar google-services.json.
+   5. No Explorador, copie o arquivo baixado para esta pasta:
+      ControleEPI\app
+   6. Confira que nessa pasta estão build.gradle e google-services.json
+      lado a lado. Se o arquivo veio como google-services (1).json,
+      renomeie para google-services.json. Depois avance até o console.
+      As dependências do Firebase já estão no código.
+
+
+3. ATIVE O LOGIN COM E-MAIL E SENHA
+
+   1. No menu esquerdo do Firebase, abra Authentication.
+   2. Se aparecer Começar, clique nele.
+   3. Abra a aba Método de login (Sign-in method).
+   4. Abra E-mail/senha (Email/Password), ative E-mail/senha e salve.
+      A opção de login por link de e-mail pode ficar desligada.
+   5. Confira que E-mail/senha aparece como ativado.
+
+
+4. CRIE O BANCO E PUBLIQUE AS REGRAS
+
+   1. No menu esquerdo, abra Firestore Database e clique em Criar banco de dados.
+   2. Use a edição Standard e mantenha o ID do banco como (default).
+      Escolha a localização do banco e selecione Modo de produção.
+      Confirme a criação.
+   3. Na pasta ControleEPI do computador, abra firestore.rules no Bloco
+      de Notas. Pressione Ctrl+A e Ctrl+C para copiar o arquivo inteiro.
+   4. No console, abra Firestore Database > Regras (Rules).
+   5. Clique dentro do editor, pressione Ctrl+A e cole com Ctrl+V.
+   6. Clique em Publicar (Publish). Confira que o console aceitou as regras.
+
+
+5. CRIE O ÍNDICE DAS ENTREGAS
+
+   1. Abra Firestore Database > Índices (Indexes).
+   2. Na parte de índices compostos, clique em Criar índice.
+   3. Preencha o ID da coleção com entregas.
+   4. Na primeira linha dos campos, digite colaboradorUid e selecione Crescente.
+   5. Na segunda linha, digite data e selecione Decrescente.
+   6. No escopo da consulta, selecione Coleção. Clique em Criar.
+   7. Aguarde o índice ficar ativo. Enquanto ele estiver sendo criado,
+      a ficha e a lista de entregas podem mostrar erro.
+
+
+6. CRIE AS DUAS CONTAS DE TESTE E DÊ OS PERFIS
+
+   1. Abra Authentication > Usuários (Users) > Adicionar usuário.
+   2. Crie uma conta de técnico com um e-mail e uma senha de teste.
+   3. Repita com outro e-mail para a conta de colaborador.
+   4. Na tabela de usuários, copie o UID da conta de técnico. O UID é
+      o identificador da conta. Use o valor da coluna UID, sem espaços.
+   5. Abra Firestore Database > Dados (Data) > Iniciar coleção.
+      No ID da coleção digite usuarios. Clique em Avançar.
+   6. No ID do documento, cole o UID do técnico. Evite ID automático.
+      Adicione o campo perfil, tipo string, valor tecnico. Salve.
+   7. Volte a Authentication e copie o UID do colaborador.
+   8. Em Firestore Database > Dados > usuarios, clique em Adicionar
+      documento. Cole o UID do colaborador como ID. Adicione o campo
+      perfil, tipo string, valor colaborador. Salve.
+   9. Confira que a coleção usuarios tem dois documentos e que cada UID
+      corresponde à conta certa. Guarde o UID do colaborador para o passo 7.
+
+
+7. ABRA O APP E TESTE A PRIMEIRA ENTREGA
+
+   1. No Android Studio, abra a pasta ControleEPI inteira, que contém
+      settings.gradle. Clique em File > Sync Project with Gradle Files.
+   2. Depois da sincronização, selecione a configuração app e um aparelho
+      ou emulador. Clique no botão verde Run para instalar a versão nova.
+   3. Entre com o e-mail e a senha do técnico. Deve aparecer o painel do técnico.
+   4. Abra Colaboradores e fichas > Adicionar. Cole o UID do colaborador.
+      Preencha nome, matrícula e setor. Salve.
+   5. Abra EPIs e certificados > Adicionar. Cadastre um EPI com descrição,
+      número do CA e validade no formato dia/mês/ano. Salve.
+   6. No painel, abra Registrar entrega. Escolha o colaborador e o EPI,
+      informe a quantidade e salve.
+   7. Entre no app com a conta de colaborador. Abra Minhas entregas e
+      toque em Confirmar recebimento. Se possível, deixe a ficha aberta
+      no aparelho do técnico para ver a confirmação aparecer.
+
+
+SE PARAR EM ALGUMA ETAPA
+
+   • Configuração necessária no app: confira se google-services.json está
+     na pasta app e execute Run de novo. O APK anterior à configuração
+     precisa ser substituído pela nova versão.
+   • Aguardando liberação: confira o documento usuarios/UID_DA_CONTA.
+     O campo deve se chamar perfil e ter valor tecnico ou colaborador,
+     conforme a conta. Em seguida, volte ao app e verifique o acesso.
+   • Erro ao abrir a ficha ou Minhas entregas: confira se o índice
+     entregas está ativo e se as regras foram publicadas no projeto certo.
+
+Guias oficiais
+https://firebase.google.com/docs/android/setup
+https://firebase.google.com/docs/auth/android/password-auth
+https://firebase.google.com/docs/firestore/security/get-started
+https://firebase.google.com/docs/firestore/query-data/indexing
+

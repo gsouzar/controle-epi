@@ -16,6 +16,14 @@ O app foi feito em Java para Android, com Firebase Authentication e Cloud Firest
 | :---: | :---: | :---: |
 | <img src="docs/prints/login-local.png" alt="Tela de login" width="240"> | <img src="docs/prints/painel-local.png" alt="Painel do técnico" width="240"> | <img src="docs/prints/vencimentos-local.png" alt="Lista de CAs vencidos e próximos de vencer" width="240"> |
 
+| Registrar entrega | EPIs e certificados |
+| :---: | :---: |
+| <img src="docs/prints/registrar-entrega.png" alt="Formulário para registrar uma entrega" width="240"> | <img src="docs/prints/epis-e-certificados.png" alt="Catálogo de EPIs e certificados" width="240"> |
+
+| Colaboradores | Minhas entregas |
+| :---: | :---: |
+| <img src="docs/prints/colaboradores.png" alt="Lista de colaboradores e busca por matrícula" width="240"> | <img src="docs/prints/minhas-entregas.png" alt="Entrega confirmada na conta do colaborador" width="240"> |
+
 Capturas do app no emulador, com dados ilustrativos.
 
 ## Configuração do Firebase

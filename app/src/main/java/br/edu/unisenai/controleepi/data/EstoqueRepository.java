@@ -12,12 +12,6 @@ public class EstoqueRepository {
     return db.collection("estoques").limit(1).get(Source.SERVER);
   }
 
-  public static boolean regrasAnteriores(Exception erro) {
-    return erro instanceof FirebaseFirestoreException
-        && ((FirebaseFirestoreException) erro).getCode()
-            == FirebaseFirestoreException.Code.PERMISSION_DENIED;
-  }
-
   public Task<DocumentSnapshot> consultar(String epiId) {
     return db.collection("estoques").document(epiId).get(Source.SERVER);
   }

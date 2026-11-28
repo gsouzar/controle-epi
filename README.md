@@ -2,7 +2,7 @@
 
 Projeto 04 de Desenvolvimento de Aplicativos Móveis
 
-**Integrantes:** Gustavo de Souza e Gabriel Florindo
+**Integrantes:** Gustavo de Souza, Gabriel Florindo e João Eduardo Melnic
 
 ## Problema
 
@@ -39,8 +39,8 @@ Capturas do app no emulador, com dados ilustrativos.
 
 | Perfil | E-mail | Senha |
 | --- | --- | --- |
-| Técnico | `tecnico@gmail.com` | Fornecida pela dupla em privado |
-| Colaborador | `colaborador@gmail.com` | Fornecida pela dupla em privado |
+| Técnico | `tecnico@gmail.com` | Fornecida pelo grupo em privado |
+| Colaborador | `colaborador@gmail.com` | Fornecida pelo grupo em privado |
 
 Para a demonstração, entre com um perfil em cada aparelho. O técnico registra uma entrega, o colaborador confirma e o técnico acompanha a confirmação na ficha. Abra também a lista de CAs vencendo.
 
@@ -57,7 +57,7 @@ Cada issue contém a história e os critérios em Dado, Quando e Então.
 | C5 | [Consultar ficha #3](https://github.com/gsouzar/controle-epi/issues/3) | Gustavo |
 | C6 | [Consultar vencimentos #6](https://github.com/gsouzar/controle-epi/issues/6) | Gabriel |
 
-O código entra em `develop` por PR e segue para `main` após revisão. O [PR #8](https://github.com/gsouzar/controle-epi/pull/8) reúne a versão inicial para revisão da dupla.
+O código entra em `develop` por PR e segue para `main` após revisão. O [PR #8](https://github.com/gsouzar/controle-epi/pull/8) reúne a versão inicial para revisão do grupo.
 
 Acompanhe as seis histórias no [quadro ControleEPI do GitHub Projects](https://github.com/users/gsouzar/projects/1/views/1), organizado em **A fazer**, **Fazendo** e **Feito**.
 

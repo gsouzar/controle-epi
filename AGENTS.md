@@ -6,4 +6,4 @@
 - Em alterações de estoque, confira a atomicidade da entrega e da baixa e a idempotência do reenvio. Uma falha ou nova tentativa não pode gerar saldo negativo, duplicar entrega ou contabilizar a mesma baixa duas vezes.
 - Em mudanças de login, saída e telas autenticadas, procure dados de outra sessão reaparecendo após logout, rotação ou callback atrasado. Ao reportar, indique o arquivo, o cenário que reproduz a falha e a consequência.
 
-Relate achados para a dupla. A aprovação e a integração são feitas pelos integrantes.
+Relate achados para o grupo. A aprovação e a integração são feitas pelos integrantes.

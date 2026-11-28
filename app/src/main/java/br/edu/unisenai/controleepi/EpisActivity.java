@@ -43,7 +43,7 @@ public class EpisActivity extends ListaActivity {
               this,
               t -> {
                 if (!sessaoAtual(dono)) return;
-                if (!t.isSuccessful() && !EstoqueRepository.regrasAnteriores(t.getException())) {
+                if (!t.isSuccessful()) {
                   erro(MensagensErro.traduzir(t.getException()));
                   return;
                 }
